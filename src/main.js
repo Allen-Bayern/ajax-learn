@@ -1,4 +1,5 @@
-addStyle = document.getElementById('addStyle');
+const addStyle = document.getElementById('addStyle');
+const addNewJs = document.getElementById('addNewJs');
 
 addStyle.onclick = () =>{
     const ajax = new XMLHttpRequest();
@@ -18,5 +19,24 @@ addStyle.onclick = () =>{
     }
 
     ajax.send();
-}
-;
+};
+
+addNewJs.onclick = () =>{
+    const request = new XMLHttpRequest();
+
+    request.open('GET', '/two.js');
+
+    request.onload = () =>{
+        const newJs = document.createElement('script');
+
+        newJs.innerHTML = request.response;
+
+        document.body.appendChild(newJs);
+    };
+
+    request.onerror = () => {
+        console.log('failed');
+    }
+
+    request.send();
+};
