@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return "<p>Hello, World!</p>"
+
+@app.route('/main.js')
+def ret():
+    return 'console.log(`hello world!`)'
