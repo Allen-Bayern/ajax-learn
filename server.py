@@ -52,6 +52,21 @@ new_html = '''
 def add_new_html():
     return new_html
 
+# add xml
+
+# 返回类型是字符串，而不是XML对象
+pre_xml = '''<?xml version="1.0" encoding="UTF-8"?>
+<message>
+    <warning>
+        hello!
+    </warning>
+</message>
+'''
+
+@app.route('/four.xml')
+def load_xml():
+    return pre_xml
+
 # add json
 @app.route('/five.json')
 def add_new_json():

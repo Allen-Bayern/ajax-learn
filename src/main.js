@@ -75,6 +75,30 @@ $addhtml.on('click', () => {
     request.send();
 });
 
+// add xml
+addXML.onclick = () => {
+    const request = new XMLHttpRequest();
+
+    request.open('GET', '/four.xml');
+
+    request.onreadystatechange = () => {
+        if(request.readyState === done && request.status === 200){
+            const dom = request.response;
+            let parser = new DOMParser();
+            let xmldoc = parser.parseFromString(dom, 'text/xml');
+            console.log(xmldoc);
+            const text = xmldoc.getElementsByTagName("warning")[0].textContent;
+
+            console.log(text.trim());
+        }
+    };
+
+
+    request.send();
+};
+
+
+// add json
 addJSON.onclick = () =>{
     const request = new XMLHttpRequest();
 
@@ -83,17 +107,20 @@ addJSON.onclick = () =>{
     request.onreadystatechange = () =>{
         if(request.readyState === done && request.status === 200){
             const obj = JSON.parse(request.response);
-            let links = document.createElement('div');
+            let links = document.createElement('ul');
             links.id = 'frontsites';
             // console.log(obj);
             obj.forEach(item => {
-                let a = '<a></a>';
-                $('frontsites').append(a);
-                console.log(links);
-                let $a = $('a');
-                console.log($a);
-                $a.prop('href', item.url);
-                $a.text(item.site);
+                // console.log(item);
+                // let a = document.createElement('a');
+                // console.log(a);
+                // a.href = item.url;
+                // a.innerText = item.site;
+                // links.appendChild(a);
+                let li = document.createElement('li');
+                li.innerHTML = `<a href=${item.url}>${item.site}</a>`;
+                console.log(li);
+                links.appendChild(li);
             });
 
             document.body.appendChild(links);

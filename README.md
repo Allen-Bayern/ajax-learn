@@ -1,6 +1,6 @@
 # How To Start the Project
 
-For one thing, you should install Python (version >= 3.6).Then you should add Flask via pip or conda.
+For one thing, you should install Python (version >= 3.6).Then you should add Flask (version >= 2.x) via pip or conda.
 
 At last, you can run the project.
 
